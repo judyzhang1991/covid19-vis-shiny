@@ -1,0 +1,9 @@
+.irs-grid-text {
+font-size: 7pt !important; 
+transform: rotate(-90deg) translate(-30px)
+}
+
+.form-group{
+  margin-bottom: 50px;
+}
+
