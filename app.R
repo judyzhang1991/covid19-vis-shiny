@@ -44,7 +44,9 @@ library(lubridate)
 
 # LOAD SOURCE FILES
 source("map_covid.R")
-source("network_flights.R")
+#source("network_flights.R")
+
+direct_routes <- read.csv("data/direct_routes.csv")
 
 
 # LOAD DATA
@@ -80,8 +82,9 @@ ui <- fluidPage(
       
       sliderTextInput("date", 
                   label = "Date of interest:",
-                  choices = format(seq(as.Date("2020/1/22"), as.Date(Sys.Date() - 1), by = "day"), "%m-%d-%Y"),
-                  selected = format(as.Date(Sys.Date() - 1), "%m-%d-%Y"),
+                 # choices = format(seq(as.Date("2020/1/22"), as.Date("2022/11/13"), by = "day"), "%m-%d-%Y"),
+                 choices = format(seq(as.Date("2020/1/22"), as.Date("2020/1/25"), by = "day"), "%m-%d-%Y"),
+                  selected = format(as.Date("2020/1/22"), "%m-%d-%Y"),
                   grid = TRUE,
                   dragRange = TRUE,
                   animate = TRUE),

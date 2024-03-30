@@ -15,7 +15,7 @@ colnames(travel_rest_dat)[1] <- "country"
 
 
 travel_rest_dat <- travel_rest_dat %>%
-  pivot_longer(cols = -country,
+  pivot_longer(cols = !c(country, country_code, country_name, region_code, region_name, jurisdiction),
                names_to = "date",
                values_to = "restriction")
 
@@ -89,7 +89,9 @@ format_date_str <- function(date){
 
 # Reformat date column in travel restriction data
 
-travel_rest_dat$date <- apply(travel_rest_dat[,2], MARGIN = 1, FUN = format_date_str)
+travel_rest_dat <- travel_rest_dat %>% mutate(
+  date = format_date_str(date)
+)
 
 
 
@@ -358,8 +360,10 @@ direct_routes <- direct_routes %>%
 
 
 
+
+
 for(i in 1 : nrow(direct_routes)){
-  
+  print(i)
   source_country_geo = assign_country_geo(direct_routes, direct_routes$source_country[i])
   
   direct_routes$source_country_lat[i] = source_country_geo[1]
@@ -525,12 +529,17 @@ plot_routes <- function(direct_routes, travel_rest_dat, country_name, world_map,
 
 
 
+## SAVE DATA ##
 
 
+write.csv(airports, "data/airports.csv")
 
+write.csv(countries_geo, "data/countries_geo.csv")
 
-
+write.csv(direct_routes, "data/direct_routes.csv")
   
+write.csv(routes, "data/routes.csv")
+write.csv(travel_rest_dat, "data/travel_rest_dat.csv")
 
 
 

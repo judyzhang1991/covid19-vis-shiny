@@ -19,8 +19,7 @@
 getDat <- function(date){
   
   date_url <- paste(paste("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/", date, sep = ""), ".csv", sep = "")
-  
-  
+
   date_dat <- read_csv(url(date_url))
   
   return(date_dat)

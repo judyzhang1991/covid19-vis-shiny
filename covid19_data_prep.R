@@ -26,7 +26,7 @@ borders <- read_csv(borders_url) %>% clean_names()
 
 ## COVID19 DATA ##
 
-date_str <- "05-22-2020"
+date_str <- "01-01-2021"
 
 covid19 <- getDat(date_str) %>% clean_coviddat()
 
