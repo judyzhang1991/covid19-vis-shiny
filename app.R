@@ -44,10 +44,10 @@ library(lubridate)
 
 # LOAD SOURCE FILES
 source("map_covid.R")
-#source("network_flights.R")
+source("network_flights.R")
 
 direct_routes <- read.csv("data/direct_routes.csv")
-
+travel_rest_dat <- read.csv("data/travel_rest_dat.csv")
 
 # LOAD DATA
 
@@ -82,33 +82,19 @@ ui <- fluidPage(
       
       sliderTextInput("date", 
                   label = "Date of interest:",
-                 # choices = format(seq(as.Date("2020/1/22"), as.Date("2022/11/13"), by = "day"), "%m-%d-%Y"),
-                 choices = format(seq(as.Date("2020/1/22"), as.Date("2020/1/25"), by = "day"), "%m-%d-%Y"),
+                  choices = format(seq(as.Date("2020/1/22"), as.Date("2022/11/13"), by = "day"), "%m-%d-%Y"),
                   selected = format(as.Date("2020/1/22"), "%m-%d-%Y"),
                   grid = TRUE,
                   dragRange = TRUE,
                   animate = TRUE),
       
-      radioButtons("inout",
-                   label = "Flight out of/Flight into",
-                   choices = list("Flight out of" = "Out",
-                                  "Flight into" = "In"),
-                   selected = "In"),
-      
-      # Dropdown widget so user can select a country
-      selectInput("country", 
-                  label = "Select a country:",
-                  choices = countries,
-                  selected = "United States"),
     ),
    
     
     mainPanel(
       
       tabsetPanel(type = "tabs",
-                  tabPanel("Map", plotOutput("map", width = "100%")),
-                  
-                  tabPanel("Network", plotOutput("network", width = "100%"))
+                  tabPanel("Map", plotOutput("map", width = "100%"))
                 
                   )
               
@@ -199,7 +185,7 @@ server <- function(input, output) {
 
     covid_map <- covid_map(dat_geo_categ, input$var, color)
 
-    plot_routes(direct_routes, travel_rest_dat, input$country, covid_map, input$inout, input$date)
+    
  
   },
   height = 600, width = 800

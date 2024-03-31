@@ -12,7 +12,7 @@
 
 ## Args:
 ## date: date of dataset to download in the format of "01-22-2020" (start date)
-## date ranges from "01-22-2020" to the day before current date
+## date ranges from "01-22-2020" to "2022/11/13"
 
 ## Return: dataset of the given date
 

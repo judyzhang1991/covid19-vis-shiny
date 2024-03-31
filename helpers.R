@@ -4,8 +4,6 @@
 ## helpers.R ##
 ## This R script includes helper functions that pre-process data that will be 
 ## used in the visualization. 
-## This file is deprecated. 
-
 
 
 
@@ -191,14 +189,10 @@ top_ten <- function(dat, title_input, date_input, color){
       axis.title = element_text(face = "bold",
                                 size = 12)
       
-     
-      
     )
     
   
-    
-  
-  
 }
+
 
 
